@@ -18,10 +18,8 @@
 
   ### File System
 
-  * doc -> documents (txt)
   * img -> images (jpg, png)
-  * rel -> releases (zip)
-  * src -> scripts (html, js, json)
+  * translation -> languages (json)
 
   ### License
 
