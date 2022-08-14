@@ -1,0 +1,745 @@
+/* ========================================================================== */
+/* -------------------------------------------------------------------------- */
+/* # Web Font */
+/* -------------------------------------------------------------------------- */
+/* ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Squada+One&display=swap');
+
+/* ========================================================================== */
+/* -------------------------------------------------------------------------- */
+/* # Inputs */
+/* -------------------------------------------------------------------------- */
+/* ========================================================================== */
+
+.charsheet * {
+	box-sizing: border-box;
+}
+.charsheet select,
+.charsheet textarea,
+.charsheet input[type="text"],
+.charsheet input[type="number"] {
+	width: 100%;
+	margin: 0;
+	border-radius: 4px;
+	font-size: 13px;
+	padding: 1px 4px;
+	border-color: #ddd;
+	background-color: rgb(240,240,240);
+}
+.charsheet select {
+	appearance: none;
+}
+.charsheet textarea {
+	height: auto;
+	resize: none;
+}
+.charsheet label {
+	font-weight: normal;
+	color: #666;
+}
+.charsheet input[type="number"]::-webkit-inner-spin-button,
+.charsheet input[type="number"]::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+}
+.charsheet input[type=number] {
+	-moz-appearance: textfield;
+}
+.charsheet textarea:focus,
+.charsheet input[type="text"]:focus,
+.charsheet input[type="number"]:focus,
+.charsheet button[type="roll"]:focus {
+	outline: 0;
+}
+.charsheet input[type="text"][readonly],
+.charsheet input[type="number"][readonly] {
+	cursor: default;
+}
+.charsheet textarea,
+.charsheet input[type="text"],
+.charsheet input[type="number"] {
+	transition: box-shadow .125s linear, background-color .125s linear;
+}
+.charsheet textarea.active:focus,
+.charsheet input[type="text"].active:focus {
+	background-color: #fff;
+}
+.charsheet input[type="text"].active {
+	box-shadow: 0 0 0 #0bf inset;
+}
+.charsheet textarea.active {
+	box-shadow: 0 0 0 #60f inset;
+}
+.charsheet input[type="text"].active:hover {
+	box-shadow: 0 0 5px #0bf inset;
+	border-color: #0bf6;
+}
+.charsheet textarea.active:hover {
+	box-shadow: 0 0 5px #60f inset;
+	border-color: #60f6;
+}
+.charsheet input[type="text"].active:focus {
+	box-shadow: 0 0 10px #0bf inset;
+	border-color: #0bf9;
+}
+.charsheet textarea.active:focus {
+	box-shadow: 0 0 10px #60f inset;
+	border-color: #60f9;
+}
+
+.charsheet .main .attributes-section button[type="roll"],
+.charsheet .main .equipment-section button[type="roll"] {
+	width: 24px;
+	height: 24px;
+	margin: 0;
+	padding: 0;
+	color: #fff;
+	border: 1px solid #222;
+	border-right: 0;
+	border-radius: 5px;
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+	background: none;
+	background-color: #111;
+	box-shadow: none;
+	text-shadow: none;
+}
+.charsheet .main .attributes-section button[type="roll"]:hover,
+.charsheet .main .attributes-section button[type="roll"]:focus,
+.charsheet .main .equipment-section button[type="roll"]:hover,
+.charsheet .main .equipment-section button[type="roll"]:focus {
+	color: #111;
+	border-color: #222;
+	background-color: #ffc;
+}
+.charsheet .main .attributes-section button[type="roll"]::before,
+.charsheet .main .equipment-section button[type="roll"]::before {
+	font-family: "dicefontd6";
+	content: "E";
+	color: inherit;
+}
+
+/* ========================================================================== */
+/* -------------------------------------------------------------------------- */
+/* # Mark Ups */
+/* -------------------------------------------------------------------------- */
+/* ========================================================================== */
+
+.charsheet abbr {
+	text-decoration: 1px underline dotted #999;
+	border-bottom: 0;
+}
+
+/* ========================================================================== */
+/* -------------------------------------------------------------------------- */
+/* # Toggles */
+/* -------------------------------------------------------------------------- */
+/* ========================================================================== */
+
+.toggle-section {
+	margin-top: 10px;
+}
+
+.charsheet .main label.toggle {
+	user-select: none;
+	display: inline-flex;
+	align-items: center;
+	width: auto;
+	margin: 0;
+	padding: 4px;
+	font-size: 14px;
+	color: #666;
+	border-radius: 4px;
+}
+.charsheet label.toggle:hover {
+	cursor: pointer;
+}
+.charsheet label.toggle:hover,
+.charsheet label.toggle:focus {
+	background-color: #1114;
+}
+.charsheet .main label.toggle span {
+	margin-left: 4px;
+}
+
+.charsheet .main .toggle-section button[type="roll"] {
+	display: inline-flex;
+	margin: 0 5px;
+	padding-right: 5px;
+	font-size: 13px;
+	vertical-align: top;
+}
+.charsheet .main .toggle-section button[type="roll"]::before {
+	margin: 0 3px;
+}
+
+/* ========================================================================== */
+/* -------------------------------------------------------------------------- */
+/* # Input Blocks */
+/* -------------------------------------------------------------------------- */
+/* ========================================================================== */
+
+.charsheet .input-block label {
+	display: inline-block;
+	width: auto;
+	height: 20px;
+	margin: 0;
+	padding: 0;
+	font-size: 12px;
+	text-indent: 5px;
+}
+
+/* ========================================================================== */
+/* -------------------------------------------------------------------------- */
+/* # Columns */
+/* -------------------------------------------------------------------------- */
+/* ========================================================================== */
+
+.two-columns {
+	font-size: 0;
+}
+.two-columns .column {
+	display: inline-block;
+	vertical-align: top;
+}
+.two-columns .column:nth-child(1){
+	width: calc(50% - 5px);
+	margin-right: 5px;
+}
+.two-columns .column:nth-child(2) {
+	width: calc(50% - 5px);
+	margin-left: 5px;
+}
+
+/* ========================================================================== */
+/* -------------------------------------------------------------------------- */
+/* # Wrapper */
+/* -------------------------------------------------------------------------- */
+/* ========================================================================== */
+
+.wrapper {
+	position: relative;
+	min-width: 800px;
+	width: 100%;
+	padding: 40px;
+	border-radius: 30px;
+	background: linear-gradient(#111, #826);
+	background-color: #111;
+	overflow: hidden;
+}
+
+.stroke {
+	position: absolute;
+	width: 40px;
+	height: 125%;
+	background: #fff;
+	transform: rotate(60deg);
+	transform-origin: 0 0;
+	z-index: 1;
+}
+.stroke.ray-1 {
+	right: 0%;
+	top: -10%;
+	box-shadow: 0 0 15px 7.5px #f33, 0 0 10px 7.5px #f33 inset;
+	box-shadow: 0 0 10px 5px #f33, 0 0 10px 10px #f33 inset;
+}
+.stroke.ray-2 {
+	right: -12%;
+	top: -6%;
+	box-shadow: 0 0 15px 7.5px #0cf, 0 0 10px 7.5px #0cf inset;
+}
+.stroke.ray-3 {
+	right: -12%;
+	top: 6%;
+	box-shadow: 0 0 15px 7.5px #0f0, 0 0 10px 7.5px #0f0 inset;
+}
+
+/* ========================================================================== */
+/* -------------------------------------------------------------------------- */
+/* # main */
+/* -------------------------------------------------------------------------- */
+/* ========================================================================== */
+
+.main {
+	position: relative;
+	min-height: 500px;
+	padding: 20px 15px;
+	font-size: 14px;
+	background: #fff;
+	border: 3px solid #111;
+	border-radius: 18px;
+	overflow: auto;
+	z-index: 1;
+}
+
+/* ========================================================================== */
+/* -------------------------------------------------------------------------- */
+/* # Logo */
+/* -------------------------------------------------------------------------- */
+/* ========================================================================== */
+
+.logo {
+	position: absolute;
+	top: 24px;
+	right: 24px;
+	width: 120px;
+}
+
+/* ========================================================================== */
+/* -------------------------------------------------------------------------- */
+/* # Heading Section */
+/* -------------------------------------------------------------------------- */
+/* ========================================================================== */
+
+.charsheet .main .heading-section table {
+	width: 80%;
+	margin-bottom: 10px;
+	border-collapse: unset;
+	border-spacing: 10px 0;
+}
+
+.charsheet .main .heading-section input,
+.charsheet .main .heading-section select {
+	height: 32px;
+	color: #111;
+}
+.charsheet .main .heading-section input.large {
+	font-family: "Squada One", sans-serif;
+	font-size: 24px;
+}
+
+/* ========================================================================== */
+/* -------------------------------------------------------------------------- */
+/* # Line */
+/* -------------------------------------------------------------------------- */
+/* ========================================================================== */
+
+.line {
+	clear: both;
+	margin-top: 10px;
+	border: 1px solid #111;
+}
+
+/* ========================================================================== */
+/* -------------------------------------------------------------------------- */
+/* # Left Section */
+/* -------------------------------------------------------------------------- */
+/* ========================================================================== */
+
+.left-section {
+	float: left;
+	width: 50%;
+	border-right: 2px solid #111;
+	margin: 0;
+	padding: 0;
+}
+
+/* ========================================================================== */
+/* -------------------------------------------------------------------------- */
+/* # Circles */
+/* -------------------------------------------------------------------------- */
+/* ========================================================================== */
+
+.circle-section {
+	margin-top: 15px;
+}
+.circle-section table {
+	width: 100%;
+}
+.circle-section table td,
+.circle-section table th {
+	text-align: center;
+}
+.circle-section table th {
+	padding: 5px 0 0;
+}
+.circle-section table label {
+	display: inline;
+	margin: 0;
+	padding: 0;
+	font-size: 12px;
+}
+.main .circle-section .circle {
+	position: relative;
+	width: 70px;
+	height: 70px;
+	margin: auto;
+	border-radius: 100%;
+	background-color: #fff;
+	box-shadow: 0 0 3px #111;
+}
+.main .circle-section .circle input[type="number"] {
+	width: 64px;
+	height: 64px;
+	font-size: 24px;
+	text-align: center;
+	border-radius: 100%;
+	background: #111;
+	color: #fff;
+	border: 6px solid transparent;
+	top: 3px;
+	position: relative;
+}
+.main .circle-section .circle.orange {
+	background-color: transparent;
+	box-shadow: none;
+}
+.main .circle-section .circle.red input[type="number"] {
+	border-color: rgb(192,32,64);
+}
+.main .circle-section .circle.blue input[type="number"] {
+	border-color: rgb(128,160,192);
+}
+.main .circle-section .circle.green input[type="number"] {
+	border-color: rgb(128,192,140);
+}
+.main .circle-section .circle.orange input[type="number"] {
+	border-color: #e72;
+}
+.main .circle-section input[type="number"].hp:hover,
+.main .circle-section input[type="number"].hp:focus {
+	color: #222;
+	background-color: #ffc;
+}
+.main .circle-section input[type="number"].hp-max {
+	position: absolute;
+	width: 40px;
+	height: 40px;
+	top: 15px;
+	right: -40px;
+	font-size: 16px;
+	color: #666;
+	border: 0;
+	background-color: transparent;
+}
+/* ========================================================================== */
+/* -------------------------------------------------------------------------- */
+/* # Attributes */
+/* -------------------------------------------------------------------------- */
+/* ========================================================================== */
+
+.attributes-section {
+	padding: 10px 10px 5px 0;
+}
+.attributes-section table {
+	width: 100%;
+	border-spacing: 0;
+	border-collapse: collapse;
+}
+.attributes-section table:not(:first-child) {
+	margin-top: 15px;
+}
+.attributes-section table th,
+.attributes-section table td {
+	text-align: left;
+}
+.attributes-section table tr {
+	border-bottom: 1px solid #d3d3d3;
+}
+.attributes-section table th {
+	font-size: 20px;
+	font-weight: normal;
+	font-family: "Squada One", sans-serif;
+	text-transform: uppercase;
+}
+.attributes-section table td {
+	font-size: 13px;
+	font-weight: bold;
+}
+.attributes-section table tr td:nth-child(1) {
+	text-indent: 5px;
+}
+.attributes-section table tr td:nth-child(2) {
+	width: 24px;
+}
+.attributes-section table tr td:nth-child(3) {
+	width: 40px;
+}
+.charsheet .attributes-section input[type="number"] {
+	width: 40px;
+	height: 24px;
+	margin: 3px 0;
+	font-size: 16px;
+	font-weight: bold;
+	text-align: center;
+	color: #fff;
+	border-color: #222;
+	border-left: 0;
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+	background-color: transparent;
+}
+.charsheet .attributes-section .combat input[type="number"] {background-color: #e72;}
+.charsheet .attributes-section .intellect input[type="number"] {background-color: #793;}
+.charsheet .attributes-section .body input[type="number"] {background-color: #c34;}
+.charsheet .attributes-section .mind input[type="number"] {background-color: #47c;}
+.charsheet .attributes-section .physical input[type="number"] {background-color: #826;}
+.charsheet .attributes-section .psychical input[type="number"] {background-color: #5ab;}
+.charsheet .attributes-section .abi-val {
+	float: right;
+	margin-right: 5px;
+	color: #999;
+}
+.charsheet .attributes-section .abi-val input[type="text"] {
+	width: 10px;
+	padding: 0;
+	font-weight: bold;
+	text-align: center;
+	color: #666;
+	border: 0;
+	background-color: transparent;
+}
+.charsheet .attributes-section table:nth-of-type(3) tr:last-child {
+	border-bottom: 0;
+}
+
+/* ========================================================================== */
+/* -------------------------------------------------------------------------- */
+/* # Right Section */
+/* -------------------------------------------------------------------------- */
+/* ========================================================================== */
+
+.right-section {
+	float: right;
+	width: 50%;
+}
+
+/* ========================================================================== */
+/* -------------------------------------------------------------------------- */
+/* # Equipment Section */
+/* -------------------------------------------------------------------------- */
+/* ========================================================================== */
+
+.equipment-section {
+	padding: 10px 0 0px 10px;
+}
+.equipment-section {
+	width: 100%;
+}
+.equipment-section table {
+	width: 100%;
+	margin: 10px 0;
+}
+.equipment-section table th,
+.equipment-section table td {
+	text-align: center;
+}
+.equipment-section table th,
+.equipment-section table td {
+	vertical-align: top;
+}
+.equipment-section table th label {
+	display: inline;
+	margin: 0;
+	padding: 0;
+	font-size: 12px;
+}
+.equipment-section table select,
+.equipment-section table input[type="text"] {
+	height: 24px;
+	margin: 0 0 5px;
+	text-align: center;
+	border-left-width: 0;
+	border-radius: 0;
+}
+.equipment-section table tr td:nth-child(5) input[type="text"] {
+	border-top-right-radius: 4px;
+	border-bottom-right-radius: 4px;
+}
+.equipment-section table select {
+	border-top-left-radius: 4px;
+	border-bottom-left-radius: 4px;
+	border-left-width: 1px;
+}
+
+/* ========================================================================== */
+/* -------------------------------------------------------------------------- */
+/* # Weapons Section */
+/* -------------------------------------------------------------------------- */
+/* ========================================================================== */
+
+.equipment-section .weapons th:nth-child(1) {
+	width: 24px;
+}
+.equipment-section .weapons th:nth-child(3) {
+	width: 48px;
+}
+.equipment-section .weapons th:nth-child(4) {
+	width: 48px;
+}
+.equipment-section .weapons th:nth-child(5) {
+	width: 64px;
+}
+.equipment-section .weapons th:nth-child(6) {
+	width: 24px;
+}
+.equipment-section .weapons td:nth-child(2) input[type="text"] {
+	font-weight: bold;
+	color: #fff;
+	border-color: #222;
+	background-color: #e72;
+}
+
+/* ========================================================================== */
+/* -------------------------------------------------------------------------- */
+/* # Protection Section */
+/* -------------------------------------------------------------------------- */
+/* ========================================================================== */
+
+.equipment-section .protection th:nth-child(2) {
+	width: 32px;
+}
+.equipment-section .protection th:nth-child(3) {
+	width: 32px;
+}
+.equipment-section .protection th:nth-child(4) {
+	width: 32px;
+}
+.equipment-section .protection th:nth-child(5) {
+	width: 32px;
+}
+.equipment-section .protection th:nth-child(6) {
+	width: 32px;
+}
+.equipment-section .protection td:nth-child(1) select {
+	font-weight: bold;
+}
+
+/* ========================================================================== */
+/* -------------------------------------------------------------------------- */
+/* # Personal Section */
+/* -------------------------------------------------------------------------- */
+/* ========================================================================== */
+
+.personal-section {
+	padding-top: 10px;
+}
+
+.personal-section > div + div {
+	margin-top: 10px;
+}
+
+.personal-section textarea.view-only {
+	font-size: 16px;
+	line-height: 1.5;
+	border-width: 0;
+	background-color: transparent;
+}
+
+/* ========================================================================== */
+/* -------------------------------------------------------------------------- */
+/* # Rolltemplates */
+/* -------------------------------------------------------------------------- */
+/* ========================================================================== */
+
+.sheet-rolltemplate-check .sheet-roll-result .inlinerollresult,
+.sheet-rolltemplate-attack .sheet-roll-result .inlinerollresult,
+.sheet-rolltemplate-damage .sheet-roll-result .inlinerollresult,
+.sheet-rolltemplate-init .sheet-roll-result .inlinerollresult,
+.sheet-rolltemplate-check .sheet-roll-mod .inlinerollresult,
+.sheet-rolltemplate-attack .sheet-roll-mod .inlinerollresult,
+.sheet-rolltemplate-damage .sheet-roll-mod .inlinerollresult,
+.sheet-rolltemplate-init .sheet-roll-mod .inlinerollresult {
+	border: none;
+	background-color: transparent;
+}
+.sheet-rolltemplate-check .sheet-roll-mod,
+.sheet-rolltemplate-attack .sheet-roll-mod,
+.sheet-rolltemplate-damage .sheet-roll-mod,
+.sheet-rolltemplate-init .sheet-roll-mod {
+	font-weight: bold;
+}
+.sheet-rolltemplate-check .sheet-roll-line,
+.sheet-rolltemplate-attack .sheet-roll-line,
+.sheet-rolltemplate-damage .sheet-roll-line,
+.sheet-rolltemplate-init .sheet-roll-line {
+	height: 6px;
+	width: 224px;
+	background: #111;
+}
+.sheet-rolltemplate-check .sheet-roll-line-top,
+.sheet-rolltemplate-attack .sheet-roll-line-top,
+.sheet-rolltemplate-damage .sheet-roll-line-top,
+.sheet-rolltemplate-init .sheet-roll-line-top {
+	margin-bottom: 2px;
+}
+.sheet-rolltemplate-check .sheet-roll-line-bottom,
+.sheet-rolltemplate-attack .sheet-roll-line-bottom,
+.sheet-rolltemplate-damage .sheet-roll-line-bottom,
+.sheet-rolltemplate-init .sheet-roll-line-bottom {
+	margin-top: 2px;
+}
+.sheet-rolltemplate-check .sheet-roll-wrapper,
+.sheet-rolltemplate-attack .sheet-roll-wrapper,
+.sheet-rolltemplate-damage .sheet-roll-wrapper,
+.sheet-rolltemplate-init .sheet-roll-wrapper {
+	width: 200px;
+	padding: 10px;
+	font-size: 16px;
+	text-align: center;
+	color: #111;
+	border: 1px solid #111;
+	background: #fff;
+	overflow: hidden;
+}
+.sheet-rolltemplate-check .sheet-roll-name,
+.sheet-rolltemplate-attack .sheet-roll-name,
+.sheet-rolltemplate-damage .sheet-roll-name,
+.sheet-rolltemplate-init .sheet-roll-name {
+	margin-bottom: 10px;
+	font-size: 24px;
+	font-family: "Squada One", sans-serif;
+}
+.sheet-rolltemplate-check .sheet-roll-result,
+.sheet-rolltemplate-attack .sheet-roll-result,
+.sheet-rolltemplate-damage .sheet-roll-result,
+.sheet-rolltemplate-init .sheet-roll-result {
+	margin-top: 10px;
+	font-size: 20px;
+	font-weight: bold;
+}
+.sheet-rolltemplate-check .sheet-roll-result,
+.sheet-rolltemplate-attack .sheet-roll-result,
+.sheet-rolltemplate-init .sheet-roll-result {
+	color: #47c;
+}
+.sheet-rolltemplate-damage .sheet-roll-result {
+	color: #c34;
+}
+.sheet-rolltemplate-check .sheet-success,
+.sheet-rolltemplate-check .sheet-failure {
+	margin-top: 5px;
+	font-weight: bold;
+}
+.sheet-rolltemplate-check .sheet-success {
+	color: #793;
+}
+.sheet-rolltemplate-check .sheet-failure {
+	color: #c34;
+}
+.sheet-rolltemplate-check .sheet-roll-note,
+.sheet-rolltemplate-attack .sheet-roll-note {
+	margin-top: 5px;
+	font-style: italic;
+	font-size: 12px;
+	color: #666;
+}
+.sheet-rolltemplate-attack .sheet-roll-wrapper a[href] {
+	margin-top: 5px;
+	padding: 4px 8px;
+	line-height: 1;
+	color: #fff;
+	font-family: "Squada One", sans-serif;
+	font-size: 24px;
+	text-decoration: none;
+	border: 0;
+	border-radius: 6px;
+	background-color: #c34;
+}
+.sheet-rolltemplate-attack .sheet-roll-wrapper a[href]:focus,
+.sheet-rolltemplate-attack .sheet-roll-wrapper a[href]:hover {
+	background-color: #e72;
+}
+.sheet-rolltemplate-attack .sheet-range {
+	margin-top: 5px;
+}

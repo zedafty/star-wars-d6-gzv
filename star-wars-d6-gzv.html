@@ -1,0 +1,603 @@
+<div class="wrapper">
+
+	<input type="hidden" name="attr_version">
+	<input type="hidden" name="attr_rmod" value="2d6">
+
+	<!-- STROKES -->
+	<div class="stroke ray-1"></div>
+	<div class="stroke ray-2"></div>
+	<div class="stroke ray-3"></div>
+
+	<div class="main">
+
+		<!-- LOGO -->
+		<div class="logo">
+			<img src="https://raw.githubusercontent.com/zedafty/star-wars-d6-gzv/main/img/star-wars-logo.png" />
+		</div>
+
+		<!-- HEADING -->
+		<div class="heading-section">
+			<table>
+				<tr>
+					<td style="width: 50%">
+						<div class="input-block">
+							<label data-i18n="char_name"></label>
+							<input type="text" name="attr_character_name" class="active large">
+						</div>
+					</td>
+					<td style="width: 35%">
+						<div class="input-block">
+							<label data-i18n="play_name"></label>
+							<input type="text" name="attr_player_name" class="active">
+						</div>
+					</td>
+					<td style="width: 15%">
+						<div class="input-block">
+							<label>Type</label>
+							<select name="attr_char_type">
+								<option value="pc" data-i18n="char_type_pc"></option>
+								<option value="boss" data-i18n="char_type_boss"></option>
+								<option value="npc-1" data-i18n="char_type_npc_1"></option>
+								<option value="npc-2" data-i18n="char_type_npc_2"></option>
+								<option value="npc-n" data-i18n="char_type_npc_n" selected></option>
+							</select>
+						</div>
+					</td>
+				</tr>
+			<table>
+		</div>
+
+		<div class="line"></div>
+
+		<!-- TOGGLES -->
+		<div class="toggle-section">
+			<button type="roll" name="roll_init" value="@{wgm} &{template:init} {{name=@{character_name}}} {{roll_name=^{stat_initiative}}} {{roll=@{init}}} {{result=[[1d20+@{init} &{tracker}]]}}" data-i18n="roll_initiative"></button>
+			<input type="hidden" name="attr_roll" value="2d6">
+			<label class="toggle">
+				<input type="checkbox" name="attr_adv_toggle" value="1">
+				<span data-i18n="roll_adv"></span>
+			</label>
+			<label class="toggle">
+				<input type="checkbox" name="attr_dis_toggle" value="1">
+				<span data-i18n="roll_dis"></span>
+			</label>
+			<input type="hidden" name="attr_wgm" value="">
+			<label class="toggle">
+				<input type="checkbox" name="attr_wgm_toggle" value="1">
+				<span data-i18n="whisper_gm"></span>
+			</label>
+		</div>
+
+		<div class="line"></div>
+
+		<!-- LEFT SECTION -->
+		<div class="left-section">
+			<!-- CIRCLES -->
+			<div class="circle-section">
+				<table>
+					<tr>
+						<td style="width: 100px; text-align: left;">
+							<div class="circle red" style="margin: 0;">
+								<input type="number" name="attr_hp" class="hp" value="0" min="0" style="left: 3px;">
+								<input type="number" name="attr_hp_max" class="hp-max" value="0" min="0" readonly>
+							</div>
+						</td>
+						<td>
+							<div class="circle blue">
+								<input type="number" name="attr_def" value="0" min="0">
+							</div>
+						</td>
+						<td>
+							<div class="circle green">
+								<input type="number" name="attr_init" value="0" min="0" readonly>
+							</div>
+						</td>
+						<td>
+							<div class="circle orange">
+								<input type="number" name="attr_move" value="4" min="0" readonly>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th><label data-i18n="stat_hit_points"></label></th>
+						<th><label data-i18n="stat_defense"></label></th>
+						<th><label data-i18n="stat_initiative"></label></th>
+						<th><label data-i18n="stat_movement"></label></th>
+					</tr>
+				</table>
+			</div>
+			<!-- ATTRIBUTES -->
+			<div class="attributes-section">
+				<div class="two-columns">
+					<div class="column">
+						<!-- COMBAT -->
+						<table class="combat">
+							<tr>
+								<th colspan="3" data-i18n="cat_combat"></th>
+							</tr>
+							<tr>
+								<td data-i18n="abi_melee"></td>
+								<td><button type="roll" name="roll_melee" data-i18n-title="abi_melee_roll" value="@{wgm}&{template:check} {{name=@{character_name}}} {{roll_name=^{abi_melee}}} {{roll=@{melee}}} {{adv=[[@{adv_toggle}]]}} {{dis=[[@{dis_toggle}]]}} {{result=[[@{rmod}+@{melee}]]}}"></button></td>
+								<td><input type="number" name="attr_melee" value="0" min="0" max="9"></td>
+							</tr>
+							<tr>
+								<td data-i18n="abi_range"></td>
+								<td><button type="roll" name="roll_range" data-i18n-title="abi_range_roll" value="@{wgm}&{template:check} {{name=@{character_name}}} {{roll_name=^{abi_range}}} {{roll=@{range}}} {{adv=[[@{adv_toggle}]]}} {{dis=[[@{dis_toggle}]]}} {{result=[[@{rmod}+@{range}]]}}"></button></td>
+								<td><input type="number" name="attr_range" value="0" min="0" max="9"></td>
+							</tr>
+						</table>
+						<!-- BODY -->
+						<table class="body">
+							<tr>
+								<th colspan="3" data-i18n="cat_body"></th>
+							</tr>
+							<tr>
+								<td data-i18n="abi_strength"></td>
+								<td><button type="roll" name="roll_str" data-i18n-title="abi_strength_roll" value="@{wgm}&{template:check} {{name=@{character_name}}} {{roll_name=^{abi_strength}}} {{roll=@{strength}}} {{adv=[[@{adv_toggle}]]}} {{dis=[[@{dis_toggle}]]}} {{result=[[@{rmod}+@{strength}]]}}"></button></td>
+								<td><input type="number" name="attr_strength" value="0" min="0" max="9"></td>
+							</tr>
+							<tr>
+								<td><span data-i18n="abi_dexterity"></span><span class="abi-val">(<input type="text" name="attr_dex_tot" value="@{dexterity}+@{prot_dex}" disabled>)</span></td>
+								<td><button type="roll" name="roll_dex" data-i18n-title="abi_dexterity_roll" value="@{wgm}&{template:check} {{name=@{character_name}}} {{roll_name=^{abi_dexterity}}} {{roll=[[@{dexterity}+@{prot_dex}]]}} {{adv=[[@{adv_toggle}]]}} {{dis=[[@{dis_toggle}]]}} {{result=[[@{rmod}+@{dexterity}+@{prot_dex}]]}}"></button></td>
+								<td><input type="number" name="attr_dexterity" value="0" min="0" max="9"></td>
+							</tr>
+							<tr>
+								<td data-i18n="abi_endurance"></td>
+								<td><button type="roll" name="roll_end" data-i18n-title="abi_endurance_roll" value="@{wgm}&{template:check} {{name=@{character_name}}} {{roll_name=^{abi_endurance}}} {{roll=@{endurance}}} {{adv=[[@{adv_toggle}]]}} {{dis=[[@{dis_toggle}]]}} {{result=[[@{rmod}+@{endurance}]]}}"></button></td>
+								<td><input type="number" name="attr_endurance" value="0" min="0" max="9"></td>
+							</tr>
+						</table>
+						<!-- PHYSICAL -->
+						<table class="physical">
+							<tr>
+								<th colspan="3" data-i18n="cat_physical"></th>
+							</tr>
+							<tr>
+								<td><span data-i18n="abi_perception"></span><span class="abi-val">(<input type="text" name="attr_per_tot" value="@{perception}+@{prot_per}" disabled>)</span></td>
+								<td><button type="roll" name="roll_per" data-i18n-title="abi_perception_roll" value="@{wgm}&{template:check} {{name=@{character_name}}} {{roll_name=^{abi_perception}}} {{roll=[[@{perception}+@{prot_per}]]}} {{adv=[[@{adv_toggle}]]}} {{dis=[[@{dis_toggle}]]}} {{result=[[@{rmod}+@{perception}+@{prot_per}]]}}"></button></td>
+								<td><input type="number" name="attr_perception" value="0" min="0" max="9"></td>
+							</tr>
+							<tr>
+								<td><span data-i18n="abi_agility"></span><span class="abi-val">(<input type="text" name="attr_agi_tot" value="@{agility}+@{prot_agi}" disabled>)</span></td>
+								<td><button type="roll" name="roll_agi" data-i18n-title="abi_agility_roll" value="@{wgm}&{template:check} {{name=@{character_name}}} {{roll_name=^{abi_agility}}} {{roll=[[@{agility}+@{prot_agi}]]}} {{adv=[[@{adv_toggle}]]}} {{dis=[[@{dis_toggle}]]}} {{result=[[@{rmod}+@{agility}+@{prot_agi}]]}}"></button></td>
+								<td><input type="number" name="attr_agility" value="0" min="0" max="9"></td>
+							</tr>
+							<tr>
+								<td><span data-i18n="abi_mobility"></span><span class="abi-val">(<input type="text" name="attr_mob_tot" value="@{mobility}+@{prot_mob}" disabled>)</span></td>
+								<td><button type="roll" name="roll_mob" data-i18n-title="abi_mobility_roll" value="@{wgm}&{template:check} {{name=@{character_name}}} {{roll_name=^{abi_mobility}}} {{roll=[[@{mobility}+@{prot_mob}]]}} {{adv=[[@{adv_toggle}]]}} {{dis=[[@{dis_toggle}]]}} {{result=[[@{rmod}+@{mobility}+@{prot_mob}]]}}"></button></td>
+								<td><input type="number" name="attr_mobility" value="0" min="0" max="9"></td>
+							</tr>
+						</table>
+					</div>
+					<div class="column">
+						<!-- INTELLECT -->
+						<table class="intellect">
+							<tr>
+								<th colspan="3" data-i18n="cat_intellect"></th>
+							</tr>
+							<tr>
+								<td data-i18n="abi_knowledge"></td>
+								<td><button type="roll" name="roll_know" data-i18n-title="abi_knowledge_roll" value="@{wgm}&{template:check} {{name=@{character_name}}} {{roll_name=^{abi_knowledge}}} {{roll=@{knowledge}}} {{adv=[[@{adv_toggle}]]}} {{dis=[[@{dis_toggle}]]}} {{result=[[@{rmod}+@{knowledge}]]}}"></button></td>
+								<td><input type="number" name="attr_knowledge" value="0" min="0" max="9"></td>
+							</tr>
+							<tr>
+								<td data-i18n="abi_technical"></td>
+								<td><button type="roll" name="roll_tech" data-i18n-title="abi_technical_roll" value="@{wgm}&{template:check} {{name=@{character_name}}} {{roll_name=^{abi_technical}}} {{roll=@{technical}}} {{adv=[[@{adv_toggle}]]}} {{dis=[[@{dis_toggle}]]}} {{result=[[@{rmod}+@{technical}]]}}"></button></td>
+								<td><input type="number" name="attr_technical" value="0" min="0" max="9"></td>
+							</tr>
+						</table>
+						<!-- MIND -->
+						<table class="mind">
+							<tr>
+								<th colspan="3" data-i18n="cat_mind"></th>
+							</tr>
+							<tr>
+								<td data-i18n="abi_will"></td>
+								<td><button type="roll" name="roll_will" data-i18n-title="abi_will_roll" value="@{wgm}&{template:check} {{name=@{character_name}}} {{roll_name=^{abi_will}}} {{roll=@{will}}} {{adv=[[@{adv_toggle}]]}} {{dis=[[@{dis_toggle}]]}} {{result=[[@{rmod}+@{will}]]}}"></button></td>
+								<td><input type="number" name="attr_will" value="0" min="0" max="9"></td>
+							</tr>
+							<tr>
+								<td data-i18n="abi_intuition"></td>
+								<td><button type="roll" name="roll_int" data-i18n-title="abi_intuition_roll" value="@{wgm}&{template:check} {{name=@{character_name}}} {{roll_name=^{abi_intuition}}} {{roll=@{intuition}}} {{adv=[[@{adv_toggle}]]}} {{dis=[[@{dis_toggle}]]}} {{result=[[@{rmod}+@{intuition}]]}}"></button></td>
+								<td><input type="number" name="attr_intuition" value="0" min="0" max="9"></td>
+							</tr>
+							<tr>
+								<td data-i18n="abi_selfcontrol"></td>
+								<td><button type="roll" name="roll_sc" data-i18n-title="abi_selfcontrol_roll" value="@{wgm}&{template:check} {{name=@{character_name}}} {{roll_name=^{abi_selfcontrol}}} {{roll=@{selfcontrol}}} {{adv=[[@{adv_toggle}]]}} {{dis=[[@{dis_toggle}]]}} {{result=[[@{rmod}+@{selfcontrol}]]}}"></button></td>
+								<td><input type="number" name="attr_selfcontrol" value="0" min="0" max="9"></td>
+							</tr>
+						</table>
+						<!-- PSYCHICAL -->
+						<table class="psychical">
+							<tr>
+								<th colspan="3" data-i18n="cat_psychical"></th>
+							</tr>
+							<tr>
+								<td data-i18n="abi_charisma"></td>
+								<td><button type="roll" name="roll_cha" data-i18n-title="abi_charisma_roll" value="@{wgm}&{template:check} {{name=@{character_name}}} {{roll_name=^{abi_charisma}}} {{roll=@{charisma}}} {{adv=[[@{adv_toggle}]]}} {{dis=[[@{dis_toggle}]]}} {{result=[[@{rmod}+@{charisma}]]}}"></button></td>
+								<td><input type="number" name="attr_charisma" value="0" min="0" max="9"></td>
+							</tr>
+							<tr>
+								<td data-i18n="abi_psychology"></td>
+								<td><button type="roll" name="roll_psy" data-i18n-title="abi_psychology_roll" value="@{wgm}&{template:check} {{name=@{character_name}}} {{roll_name=^{abi_psychology}}} {{roll=@{psychology}}} {{adv=[[@{adv_toggle}]]}} {{dis=[[@{dis_toggle}]]}} {{result=[[@{rmod}+@{psychology}]]}}"></button></td>
+								<td><input type="number" name="attr_psychology" value="0" min="0" max="9"></td>
+							</tr>
+							<tr>
+								<td><abbr data-i18n-title="abi_leadership" data-i18n="abi_leadership_abbr"></abbr></td>
+								<td><button type="roll" name="roll_lead" data-i18n-title="abi_leadership_roll" value="@{wgm}&{template:check} {{name=@{character_name}}} {{roll_name=^{abi_leadership}}} {{roll=@{leadership}}} {{adv=[[@{adv_toggle}]]}} {{dis=[[@{dis_toggle}]]}} {{result=[[@{rmod}+@{leadership}]]}}"></button></td>
+								<td><input type="number" name="attr_leadership" value="0" min="0" max="9"></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div><!-- END LEFT SECTION -->
+
+		<!-- RIGHT SECTION -->
+		<div class="right-section">
+			<!-- EQUIPMENT -->
+			<div class="equipment-section">
+				<!-- WEAPONS -->
+				<button type="roll" name="roll_wpn_1_dmg" style="display: none;" value="@{wgm}&{template:damage} {{name=@{character_name}}} {{roll_name=@{wpn_1_name}}} {{roll=@{wpn_1_dmg}}} {{result=[[@{wpn_1_dmg}+[[@{wpn_1_hth}*@{melee}]]]]}}"></button>
+				<button type="roll" name="roll_wpn_2_dmg" style="display: none;" value="@{wgm}&{template:damage} {{name=@{character_name}}} {{roll_name=@{wpn_2_name}}} {{roll=@{wpn_2_dmg}}} {{result=[[@{wpn_2_dmg}+[[@{wpn_2_hth}*@{melee}]]]]}}"></button>
+				<button type="roll" name="roll_wpn_3_dmg" style="display: none;" value="@{wgm}&{template:damage} {{name=@{character_name}}} {{roll_name=@{wpn_3_name}}} {{roll=@{wpn_3_dmg}}} {{result=[[@{wpn_3_dmg}+[[@{wpn_3_hth}*@{melee}]]]]}}"></button>
+				<table class="weapons">
+					<tr>
+						<th></th>
+						<th><label data-i18n="weapon"></label></th>
+						<th><label data-i18n="range"></label></th>
+						<th><label><abbr data-i18n-title="attack_tt" data-i18n="attack_abbr"></label></th>
+						<th><label data-i18n="damage"></label></th>
+						<th><label data-i18n="melee"></label></th>
+					</tr>
+					<tr>
+						<td><button type="roll" name="roll_wpn_1_atk" data-i18n-title="attack_roll" value="@{wgm}&{template:attack} {{name=@{character_name}}} {{roll_name=@{wpn_1_name}}} {{roll=[[@{wpn_1_hit}]]}} {{roll_str=@{wpn_1_hit}}} {{range=@{wpn_1_rng}}} {{adv=[[@{adv_toggle}]]}} {{dis=[[@{dis_toggle}]]}} {{result=[[@{rmod}@{wpn_1_hit}+[[@{wpn_1_hth}*@{melee}+(1-@{wpn_1_hth})*@{range}]]]]}} {{damage=[^{damage}](~@{character_name}|wpn_1_dmg)}}"></button></td>
+						<td><input type="text" name="attr_wpn_1_name" data-i18n-placeholder="weapon_name"></td>
+						<td><input type="text" name="attr_wpn_1_rng" placeholder="0 m"></td>
+						<td><input type="text" name="attr_wpn_1_hit" placeholder="+0" value="+0"></td>
+						<td><input type="text" name="attr_wpn_1_dmg" placeholder="2d6" value="2d6"></td>
+						<td><input type="checkbox" name="attr_wpn_1_hth" value="1" checked></td>
+					</tr>
+					<tr>
+						<td><button type="roll" name="roll_wpn_2_atk" data-i18n-title="attack_roll" value="@{wgm}&{template:attack} {{name=@{character_name}}} {{roll_name=@{wpn_2_name}}} {{roll=[[@{wpn_2_hit}]]}}{{roll_str=@{wpn_2_hit}}} {{range=@{wpn_2_rng}}} {{adv=[[@{adv_toggle}]]}} {{dis=[[@{dis_toggle}]]}} {{result=[[@{rmod}@{wpn_2_hit}+[[@{wpn_2_hth}*@{melee}+(1-@{wpn_2_hth})*@{range}]]]]}} {{damage=[^{damage}](~@{character_name}|wpn_2_dmg)}}"></button></td>
+						<td><input type="text" name="attr_wpn_2_name" data-i18n-placeholder="weapon_name"></td>
+						<td><input type="text" name="attr_wpn_2_rng" placeholder="0 m"></td>
+						<td><input type="text" name="attr_wpn_2_hit" placeholder="+0" value="+0"></td>
+						<td><input type="text" name="attr_wpn_2_dmg" placeholder="2d6" value="2d6"></td>
+						<td><input type="checkbox" name="attr_wpn_2_hth" value="1"></td>
+					</tr>
+					<tr>
+						<td><button type="roll" name="roll_wpn_3_atk" data-i18n-title="attack_roll" value="@{wgm}&{template:attack} {{name=@{character_name}}} {{roll_name=@{wpn_3_name}}} {{roll=[[@{wpn_3_hit}]]}}{{roll_str=@{wpn_3_hit}}} {{range=@{wpn_3_rng}}} {{adv=[[@{adv_toggle}]]}} {{dis=[[@{dis_toggle}]]}} {{result=[[@{rmod}@{wpn_3_hit}+[[@{wpn_3_hth}*@{melee}+(1-@{wpn_3_hth})*@{range}]]]]}} {{damage=[^{damage}](~@{character_name}|wpn_3_dmg)}}"></button></td>
+						<td><input type="text" name="attr_wpn_3_name" data-i18n-placeholder="weapon_name"></td>
+						<td><input type="text" name="attr_wpn_3_rng" placeholder="0 m"></td>
+						<td><input type="text" name="attr_wpn_3_hit" placeholder="+0" value="+0"></td>
+						<td><input type="text" name="attr_wpn_3_dmg" placeholder="2d6"></td>
+						<td><input type="checkbox" name="attr_wpn_3_hth" value="1"></td>
+					</tr>
+				</table>
+				<!-- PROTECTION -->
+				<input type="hidden" name="attr_prot_def" value="0">
+				<input type="hidden" name="attr_prot_dex" value="0">
+				<input type="hidden" name="attr_prot_agi" value="0">
+				<input type="hidden" name="attr_prot_per" value="0">
+				<input type="hidden" name="attr_prot_mob" value="0">
+				<table class="protection">
+					<tr>
+						<th><label data-i18n="armor"></label></th>
+						<th><label><abbr data-i18n-title="armor_defense_tt" data-i18n="armor_defense_abbr"></label></label></th>
+						<th><label><abbr data-i18n-title="armor_dexterity_tt" data-i18n="armor_dexterity_abbr"></label></th>
+						<th><label><abbr data-i18n-title="armor_agility_tt" data-i18n="armor_agility_abbr"></label></th>
+						<th><label><abbr data-i18n-title="armor_perception_tt" data-i18n="armor_perception_abbr"></label></label></th>
+						<th><label><abbr data-i18n-title="armor_mobility_tt" data-i18n="armor_mobility_abbr"></label></th>
+					</tr>
+					<tr>
+						<td>
+							<select name="attr_prot_1">
+								<option value="" selected>—</option>
+								<option value="arm-lgt" data-i18n="armor_light"></option>
+								<option value="arm-med" data-i18n="armor_medium"></option>
+								<option value="arm-hvy" data-i18n="armor_heavy"></option>
+								<option value="helm" data-i18n="helm"></option>
+								<option value="shd-tac" data-i18n="shield_tactical"></option>
+								<option value="shd-ion" data-i18n="shield_ion"></option>
+							</select>
+						</td>
+						<td><input type="text" name="attr_prot_1_def" value="0" readonly></td>
+						<td><input type="text" name="attr_prot_1_dex" value="0" readonly></td>
+						<td><input type="text" name="attr_prot_1_agi" value="0" readonly></td>
+						<td><input type="text" name="attr_prot_1_per" value="0" readonly></td>
+						<td><input type="text" name="attr_prot_1_mob" value="0" readonly></td>
+					</tr>
+					<tr>
+						<td>
+							<select name="attr_prot_2">
+								<option value="" selected>—</option>
+								<option value="arm-lgt" data-i18n="armor_light"></option>
+								<option value="arm-med" data-i18n="armor_medium"></option>
+								<option value="arm-hvy" data-i18n="armor_heavy"></option>
+								<option value="helm" data-i18n="helm"></option>
+								<option value="shd-tac" data-i18n="shield_tactical"></option>
+								<option value="shd-ion" data-i18n="shield_ion"></option>
+							</select>
+						</td>
+						<td><input type="text" name="attr_prot_2_def" value="0" readonly></td>
+						<td><input type="text" name="attr_prot_2_dex" value="0" readonly></td>
+						<td><input type="text" name="attr_prot_2_agi" value="0" readonly></td>
+						<td><input type="text" name="attr_prot_2_per" value="0" readonly></td>
+						<td><input type="text" name="attr_prot_2_mob" value="0" readonly></td>
+					</tr>
+					<tr>
+						<td>
+							<select name="attr_prot_3">
+								<option value="" selected>—</option>
+								<option value="arm-lgt" data-i18n="armor_light"></option>
+								<option value="arm-med" data-i18n="armor_medium"></option>
+								<option value="arm-hvy" data-i18n="armor_heavy"></option>
+								<option value="helm" data-i18n="helm"></option>
+								<option value="shd-tac" data-i18n="shield_tactical"></option>
+								<option value="shd-ion" data-i18n="shield_ion"></option>
+							</select>
+						</td>
+						<td><input type="text" name="attr_prot_3_def" value="0" readonly></td>
+						<td><input type="text" name="attr_prot_3_dex" value="0" readonly></td>
+						<td><input type="text" name="attr_prot_3_agi" value="0" readonly></td>
+						<td><input type="text" name="attr_prot_3_per" value="0" readonly></td>
+						<td><input type="text" name="attr_prot_3_mob" value="0" readonly></td>
+					</tr>
+				</table>
+				<!-- OTHER EQUIPMENT -->
+				<div class="input-block">
+					<label data-i18n="equipment"></label>
+					<textarea rows="10" name="attr_equipment" class="active" spellcheck="false"></textarea>
+				</div>
+			</div>
+		</div><!-- END RIGHT SECTION -->
+
+		<div class="line"></div>
+
+		<!-- PERSONAL -->
+		<div class="personal-section">
+			<div class="two-columns">
+				<div class="column">
+					<div class="input-block">
+						<label data-i18n="char_goals"></label>
+						<textarea rows="3" name="attr_goals" class="view-only" spellcheck="false"></textarea>
+					</div>
+				</div>
+				<div class="column">
+					<div class="input-block">
+						<label data-i18n="play_notes"></label>
+						<textarea rows="4" name="attr_notes" class="active" spellcheck="false"></textarea>
+					</div>
+				</div>
+			</div>
+			<div class="input-block">
+				<label data-i18n="char_desc"></label>
+				<textarea rows="10" name="attr_description" class="view-only" spellcheck="false"></textarea>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<rolltemplate class="sheet-rolltemplate-check">
+	<div class="sheet-roll-line sheet-roll-line-top"></div>
+	<div class="sheet-roll-wrapper">
+		<div class="sheet-roll-name">{{name}}</div>
+		<div><strong>{{roll_name}}</strong><span data-i18n="tpl_with"></span>+<span class="sheet-roll-mod">{{roll}}</span></div>
+		<div class="sheet-roll-result">{{result}}</div>
+		{{#rollTotal() adv 1}}<div class="sheet-roll-note" data-i18n="tpl_with_adv"></div>{{/rollTotal() adv 1}}
+		{{#rollTotal() dis 1}}<div class="sheet-roll-note" data-i18n="tpl_with_dis"></div>{{/rollTotal() dis 1}}
+		{{#rollGreater() result 9}}<div class="sheet-success" data-i18n="tpl_success"></div>{{/rollGreater() result 9}}
+		{{#^rollGreater() result 9}}<div class="sheet-failure" data-i18n="tpl_failure"></div>{{/^rollGreater() result 9}}
+	</div>
+	<div class="sheet-roll-line sheet-roll-line-bottom"></div>
+</rolltemplate>
+
+<rolltemplate class="sheet-rolltemplate-attack">
+	<div class="sheet-roll-line sheet-roll-line-top"></div>
+	<div class="sheet-roll-wrapper">
+		<div class="sheet-roll-name">{{name}}</div>
+		<div><span data-i18n="tpl_attack"></span><strong>{{roll_name}}</strong>{{#rollGreater() roll 0}}<span data-i18n="tpl_with"></span><span class="sheet-roll-mod">{{roll_str}}</span>{{/rollGreater() roll 0}}</div>
+		{{#range}}<div class="sheet-range"><span data-i18n="tpl_range"></span><strong>{{range}}</strong></div>{{/range}}
+		<div class="sheet-roll-result">{{result}}</div>
+		{{#rollTotal() adv 1}}<div class="sheet-roll-note" data-i18n="tpl_with_adv"></div>{{/rollTotal() adv 1}}
+		{{#rollTotal() dis 1}}<div class="sheet-roll-note" data-i18n="tpl_with_dis"></div>{{/rollTotal() dis 1}}
+		<div>{{damage}}</div>
+	</div>
+	<div class="sheet-roll-line sheet-roll-line-bottom"></div>
+</rolltemplate>
+
+<rolltemplate class="sheet-rolltemplate-damage">
+	<div class="sheet-roll-line sheet-roll-line-top"></div>
+	<div class="sheet-roll-wrapper">
+		<div class="sheet-roll-name">{{name}}</div>
+		<div><span data-i18n="tpl_damage"></span><strong>{{roll_name}}</strong><span data-i18n="tpl_with"></span><span class="sheet-roll-mod">{{roll}}</span></div>
+		<div class="sheet-roll-result">{{result}}</div>
+		<div>{{damage}}</div>
+	</div>
+	<div class="sheet-roll-line sheet-roll-line-bottom"></div>
+</rolltemplate>
+
+<rolltemplate class="sheet-rolltemplate-init">
+	<div class="sheet-roll-line sheet-roll-line-top"></div>
+	<div class="sheet-roll-wrapper">
+		<div class="sheet-roll-name">{{name}}</div>
+		<div><strong>{{roll_name}}</strong><span data-i18n="tpl_with"></span>+<span class="sheet-roll-mod">{{roll}}</span></div>
+		<div class="sheet-roll-result">{{result}}</div>
+	</div>
+	<div class="sheet-roll-line sheet-roll-line-bottom"></div>
+</rolltemplate>
+
+<script type="text/worker">
+
+	function toInt(n) {
+		return parseInt(n) || 0;
+	}
+
+	function signInt(n) {
+		return n >= 0 ? "+" + n : n.toString();
+	}
+
+	on("change:adv_toggle", function(e) {
+		let u = {};
+		if (e.newValue == "1") {
+			u["dis_toggle"] = 0;
+			u["rmod"] = "3d6dl1";
+		} else {
+			u["rmod"] = "2d6";
+		}
+		setAttrs(u, {"silent" : true});
+	});
+
+	on("change:dis_toggle", function(e) {
+		let u = {};
+		if (e.newValue == "1") {
+			u["adv_toggle"] = 0;
+			u["rmod"] = "3d6dh1";
+		} else {
+			u["rmod"] = "2d6";
+		}
+		setAttrs(u, {"silent" : true});
+	});
+
+	on("change:wgm_toggle", function(e) {
+		let u = {};
+		if (e.newValue == "1") {
+			u["wgm"] = "/w gm";
+		} else {
+			u["wgm"] = "";
+		}
+		setAttrs(u, {"silent" : true});
+	});
+
+	on("change:wpn_1_hit change:wpn_2_hit change:wpn_3_hit", function(e) {
+		let u = {};
+		let n = parseInt(e.newValue);
+		u[e.sourceAttribute] = signInt(Number.isNaN(n) ? 0 : n);
+		setAttrs(u, {"silent" : true});
+	});
+
+	const prot = {
+		"arm-lgt" : {"def" : 2, "dex" : -1, "agi" : -1, "per" : 0, "mob" : 0},
+		"arm-med" : {"def" : 4, "dex" : -1, "agi" : -1, "per" : 0, "mob" : -1},
+		"arm-hvy" : {"def" : 7, "dex" : -2, "agi" : -2, "per" : 0, "mob" : -2},
+		"helm" : {"def" : 1, "dex" : 0, "agi" : 0, "per" : -1, "mob" : 0},
+		"shd-tac" : {"def" : 2, "dex" : 0, "agi" : 0, "per" : 0, "mob" : -2},
+		"shd-ion" : {"def" : 4, "dex" : 0, "agi" : 0, "per" : 0, "mob" : 0}
+	};
+
+	const updateProtection = function() {
+		let a = ["def", "dex", "agi", "per", "mob"];
+		let b = [];
+		let i, k;
+		for (i = 1; i <= 3; i++) {
+			for (k in a) {
+				b.push(`prot_${i}_${a[k]}`);
+			}
+		}
+		getAttrs(b, v => {
+			let def = 0;
+			let dex = 0;
+			let agi = 0;
+			let per = 0;
+			let mob = 0;
+			for (i = 1; i <= 3; i++) {
+				def += toInt(v[`prot_${i}_def`]);
+				dex += toInt(v[`prot_${i}_dex`]);
+				agi += toInt(v[`prot_${i}_agi`]);
+				per += toInt(v[`prot_${i}_per`]);
+				mob += toInt(v[`prot_${i}_mob`]);
+			}
+			let u = {};
+			u["prot_def"] = def;
+			u["prot_dex"] = dex;
+			u["prot_agi"] = agi;
+			u["prot_per"] = per;
+			u["prot_mob"] = mob;
+			setAttrs(u);
+		});
+	};
+
+	on("change:prot_1 change:prot_2 change:prot_3", function(e) {
+		let i = e.sourceAttribute.slice(-1);
+		let k = e.newValue;
+		let u = {};
+		if (prot.hasOwnProperty(k)) {
+			u[`prot_${i}_def`] = signInt(prot[k].def);
+			u[`prot_${i}_dex`] = signInt(prot[k].dex);
+			u[`prot_${i}_agi`] = signInt(prot[k].agi);
+			u[`prot_${i}_per`] = signInt(prot[k].per);
+			u[`prot_${i}_mob`] = signInt(prot[k].mob);
+		} else {
+			u[`prot_${i}_def`] = 0;
+			u[`prot_${i}_dex`] = 0;
+			u[`prot_${i}_agi`] = 0;
+			u[`prot_${i}_per`] = 0;
+			u[`prot_${i}_mob`] = 0;
+		}
+		setAttrs(u, null, updateProtection);
+	});
+
+	const getHitPointsBase = function(s) {
+		if (s == "pc" || s == "boss") return 40;
+		else if (s == "npc-1") return 20;
+		return 10;
+	};
+
+	const updateHitPointsMax = function(b) {
+		getAttrs(["char_type", "endurance"], v => {
+			let n = getHitPointsBase(v["char_type"]) + toInt(v["endurance"]) * 10;
+			let u = {};
+			u["hp_max"] = n;
+			if (b) u["hp"] = n;
+			setAttrs(u);
+		});
+	};
+
+	on("change:char_type change:endurance", updateHitPointsMax);
+
+	const updateDefense = function() {
+		getAttrs(["char_type", "dexterity", "agility", "prot_dex", "prot_agi", "prot_def"], v => {
+			let n = v["char_type"] == "pc" ? 8 : 6;
+			let dex = toInt(v["dexterity"]) + toInt(v["prot_dex"]);
+			let agi = toInt(v["agility"]) + toInt(v["prot_agi"]);
+			n += Math.floor((dex + agi) / 2) + toInt(v["prot_def"]);
+			setAttrs({"def" : n}, {"silent" : true});
+		});
+	};
+
+	on("change:char_type change:dexterity change:agility change:prot_def", updateDefense);
+
+	const updateInitiative = function() {
+		let a = ["perception", "intuition", "prot_per"];
+		getAttrs(a, v => {
+			let n = 0;
+			a.forEach(o => {n += toInt(v[o])});
+			setAttrs({"init" : n}, {"silent" : true});
+		});
+	};
+
+	on("change:perception change:intuition change:prot_per", updateInitiative);
+
+	const updateMovement = function() {
+		getAttrs(["mobility", "prot_mob"], v => {
+			let n = 4 + toInt(v["mobility"]) + toInt(v["prot_mob"]);
+			setAttrs({"move" : n}, {"silent" : true});
+		});
+	};
+
+	on("change:mobility change:prot_mob", updateMovement);
+
+	on("sheet:opened", function(){
+		getAttrs(["version"], v => {
+			if (v["version"] !== "1.0") {
+				let u = {};
+				u["version"] = 1.0;
+				updateHitPointsMax(true);
+				updateDefense();
+			}
+		});
+	});
+
+</script>
